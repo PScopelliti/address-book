@@ -7,7 +7,6 @@ import com.gumtree.support.PersonMatcher;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -18,6 +17,7 @@ import static java.time.LocalDate.of;
 import static java.util.Optional.of;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -31,7 +31,7 @@ public class LocalFileDataReaderTest {
 
     @Before
     public void before() {
-        when(personParser.parsePerson(Matchers.anyString())).thenReturn(of(buildMalePerson("Bill McKnight", of(1977, 3, 16))));
+        when(personParser.parsePerson(anyString())).thenReturn(of(buildMalePerson("Bill McKnight", of(1977, 3, 16))));
     }
 
     @Test

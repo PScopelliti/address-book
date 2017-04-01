@@ -3,7 +3,6 @@ package com.gumtree.service;
 
 import com.gumtree.model.AddressBook;
 import com.gumtree.model.Person;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Collections;
@@ -22,19 +21,15 @@ public class AddressBookServiceBeanTest {
     private AddressBook addressBook;
     private List<Person> personList;
 
-
-    @Before
-    public void before() {
-        sut = new AddressBookServiceBean();
-    }
-
     @Test
     public void shouldReturnOneMale() {
 
         personList = asList(buildMalePerson("some_name", of(1977, 3, 16)));
         addressBook = new AddressBook(personList);
 
-        assertEquals(1, sut.getMale(addressBook));
+        sut = new AddressBookServiceBean(addressBook);
+
+        assertEquals(1, sut.getMale());
     }
 
     @Test
@@ -43,7 +38,9 @@ public class AddressBookServiceBeanTest {
         personList = Collections.emptyList();
         addressBook = new AddressBook(personList);
 
-        assertEquals(0, sut.getMale(addressBook));
+        sut = new AddressBookServiceBean(addressBook);
+
+        assertEquals(0, sut.getMale());
     }
 
     @Test
@@ -53,7 +50,9 @@ public class AddressBookServiceBeanTest {
                 buildFemalePerson("some_name", of(1977, 3, 16)));
         addressBook = new AddressBook(personList);
 
-        assertEquals(1, sut.getMale(addressBook));
+        sut = new AddressBookServiceBean(addressBook);
+
+        assertEquals(1, sut.getMale());
     }
 
     @Test
@@ -63,8 +62,10 @@ public class AddressBookServiceBeanTest {
                 buildFemalePerson("some_name_1", of(1990, 3, 16)));
         addressBook = new AddressBook(personList);
 
-        assertTrue(sut.getOldest(addressBook).isPresent());
-        assertEquals("some_name_2", sut.getOldest(addressBook).get().getName());
+        sut = new AddressBookServiceBean(addressBook);
+
+        assertTrue(sut.getOldest().isPresent());
+        assertEquals("some_name_2", sut.getOldest().get().getName());
 
     }
 }

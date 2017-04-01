@@ -23,7 +23,7 @@ public class LocalAddressBookRepoTest {
 
         List<Person> input = asList(buildMalePerson("some_name", of(1977, 3, 16)));
 
-        LocalAddressBookRepo sut = new LocalAddressBookRepo(input);
+        sut = new LocalAddressBookRepo(input);
 
         assertTrue(sut.getAddressBook().isPresent());
         assertEquals(1, sut.getAddressBook().get().getPersonList().size());
@@ -34,7 +34,7 @@ public class LocalAddressBookRepoTest {
 
         List<Person> input = emptyList();
 
-        LocalAddressBookRepo sut = new LocalAddressBookRepo(input);
+        sut = new LocalAddressBookRepo(input);
 
         assertFalse(sut.getAddressBook().isPresent());
     }

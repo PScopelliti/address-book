@@ -12,13 +12,19 @@ import static com.gumtree.model.Gender.MALE;
 
 public class AddressBookServiceBean implements AddressBookService {
 
-    @Override
-    public long getMale(AddressBook addressBook) {
-        return getGenderCount(MALE, addressBook);
+    private AddressBook addressBook;
+
+    public AddressBookServiceBean(AddressBook addressBook) {
+        this.addressBook = addressBook;
     }
 
     @Override
-    public Optional<Person> getOldest(AddressBook addressBook) {
+    public long getMale() {
+        return getGenderCount(MALE);
+    }
+
+    @Override
+    public Optional<Person> getOldest() {
 
         return addressBook
                 .getPersonList()
@@ -26,6 +32,14 @@ public class AddressBookServiceBean implements AddressBookService {
                 .min(Comparator.comparing(Person::getBirthDay));
     }
 
+    @Override
+    public Optional<Person> findPerson(String name) {
+        return addressBook
+                .getPersonList()
+                .stream()
+                .filter(p -> p.getName().equals(name))
+                .findFirst();
+    }
 
     /**
      * Finds total number of people of given gender.
@@ -33,7 +47,7 @@ public class AddressBookServiceBean implements AddressBookService {
      * @param gender gender
      * @return number of people
      */
-    private long getGenderCount(Gender gender, AddressBook addressBook) {
+    private long getGenderCount(Gender gender) {
         return addressBook
                 .getPersonList()
                 .stream()

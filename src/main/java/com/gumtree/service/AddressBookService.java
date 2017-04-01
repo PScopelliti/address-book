@@ -1,15 +1,16 @@
 package com.gumtree.service;
 
 
-import com.gumtree.model.AddressBook;
 import com.gumtree.model.Person;
 
 import java.util.Optional;
 
 public interface AddressBookService {
 
-    long getMale(AddressBook addressBook);
+    long getMale();
 
-    Optional<Person> getOldest(AddressBook addressBook);
+    Optional<Person> getOldest();
+
+    Optional<Person> findPerson(String name);
 
 }
