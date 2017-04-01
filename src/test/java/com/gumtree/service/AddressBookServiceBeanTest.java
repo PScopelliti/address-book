@@ -14,6 +14,7 @@ import static com.gumtree.support.PersonMockFactory.buildMalePerson;
 import static java.time.LocalDate.of;
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class AddressBookServiceBeanTest {
 
@@ -53,5 +54,17 @@ public class AddressBookServiceBeanTest {
         addressBook = new AddressBook(personList);
 
         assertEquals(1, sut.getMale(addressBook));
+    }
+
+    @Test
+    public void shouldReturnOldestSuccesfully() {
+
+        personList = asList(buildMalePerson("some_name_2", of(1977, 3, 16)),
+                buildFemalePerson("some_name_1", of(1990, 3, 16)));
+        addressBook = new AddressBook(personList);
+
+        assertTrue(sut.getOldest(addressBook).isPresent());
+        assertEquals("some_name_2", sut.getOldest(addressBook).get().getName());
+
     }
 }

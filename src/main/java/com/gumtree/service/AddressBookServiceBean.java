@@ -3,6 +3,10 @@ package com.gumtree.service;
 
 import com.gumtree.model.AddressBook;
 import com.gumtree.model.Gender;
+import com.gumtree.model.Person;
+
+import java.util.Comparator;
+import java.util.Optional;
 
 import static com.gumtree.model.Gender.MALE;
 
@@ -14,8 +18,12 @@ public class AddressBookServiceBean implements AddressBookService {
     }
 
     @Override
-    public String getOldest(AddressBook addressBook) {
-        return null;
+    public Optional<Person> getOldest(AddressBook addressBook) {
+
+        return addressBook
+                .getPersonList()
+                .stream()
+                .min(Comparator.comparing(Person::getBirthDay));
     }
 
 
