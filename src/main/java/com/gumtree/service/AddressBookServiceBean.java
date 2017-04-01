@@ -25,7 +25,7 @@ public class AddressBookServiceBean implements AddressBookService {
      * @param gender gender
      * @return number of people
      */
-    public long getGenderCount(Gender gender, AddressBook addressBook) {
+    private long getGenderCount(Gender gender, AddressBook addressBook) {
         return addressBook
                 .getPersonList()
                 .stream()
