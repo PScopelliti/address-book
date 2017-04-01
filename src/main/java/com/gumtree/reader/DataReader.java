@@ -1,9 +1,11 @@
 package com.gumtree.reader;
 
 
-import java.util.stream.Stream;
+import com.gumtree.model.Person;
+
+import java.util.List;
 
 public interface DataReader {
 
-    Stream<String> readData();
+    List<Person> readData();
 }
