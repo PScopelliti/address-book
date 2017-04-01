@@ -1,6 +1,6 @@
 # address-book
 
-This application reads *AddressBook* file and answer the following questions:
+This application reads *address-book.txt* file and answer the following questions:
 
 1. How many males are in the address book?
 2. Who is the oldest person in the address book?
