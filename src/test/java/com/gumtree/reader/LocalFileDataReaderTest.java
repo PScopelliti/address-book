@@ -18,6 +18,7 @@ import static java.util.Optional.of;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -58,5 +59,8 @@ public class LocalFileDataReaderTest {
         assertThat(buildMalePerson("Bill McKnight", of(1977, 3, 16)), new PersonMatcher(list.get(2)));
         assertThat(buildMalePerson("Bill McKnight", of(1977, 3, 16)), new PersonMatcher(list.get(3)));
         assertThat(buildMalePerson("Bill McKnight", of(1977, 3, 16)), new PersonMatcher(list.get(4)));
+
+
+        verify(personParser).parsePerson("Bill McKnight, Male, 16/03/77");
     }
 }
