@@ -9,9 +9,9 @@ public class Person {
     private final Gender gender;
     private final LocalDate birthDay;
 
-    private Person(String name,
-                   Gender gender,
-                   LocalDate birthDay) {
+    public Person(String name,
+                  Gender gender,
+                  LocalDate birthDay) {
         this.name = name;
         this.gender = gender;
         this.birthDay = birthDay;
